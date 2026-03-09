@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Flask Backend Home</title>
+    <style>
+        body { font-family: Arial; text-align: center; margin-top: 50px; background-color: #f4f4f4; }
+        .container { background: white; padding: 30px; display: inline-block; border-radius: 10px; box-shadow: 0px 0px 10px #ccc; }
+        .btn { 
+            display: inline-block; padding: 10px 20px; margin: 10px; 
+            background: #007bff; color: white; text-decoration: none; border-radius: 5px; 
+        }
+        .btn-api { background: #28a745; border: none; cursor: pointer; color: white; padding: 10px 20px; border-radius: 5px; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Flask Backend Lab</h1>
+        <p>User Authentication aur API testing ke liye niche options use karein:</p>
+        
+        <hr>
+
+        <div>
+            <a href="{{ url_for('register') }}" class="btn">Naya User Banayein (Register)</a>
+            <a href="{{ url_for('login') }}" class="btn">Purana User Login Karein</a>
+        </div>
+
+        <hr>
+
+        <h3>Backend API Test</h3>
+        <button onclick="checkAPI()" class="btn-api">Check API Status</button>
+        <p id="result" style="font-weight: bold; color: blue;"></p>
+    </div>
+
+    <script>
+        function checkAPI() {
+            fetch('/api/status')
+                .then(res => res.json())
+                .then(data => {
+                    document.getElementById('result').innerText = "Server Says: " + data.message;
+                });
+        }
+    </script>
+
+</body>
+</html>
